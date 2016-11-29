@@ -1,0 +1,39 @@
+src/Graphics/MainFrame.java:1:	Package name contains upper case characters
+src/Graphics/MainFrame.java:8:	headerCommentRequirement Required
+src/Graphics/MainFrame.java:13:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/Graphics/MainFrame.java:13:	To avoid mistakes add a comment at the beginning of the kit field if you want a default access modifier
+src/Graphics/MainFrame.java:13:	Use explicit scoping instead of the default package private level
+src/Graphics/MainFrame.java:13:	fieldCommentRequirement Required
+src/Graphics/MainFrame.java:14:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/Graphics/MainFrame.java:14:	To avoid mistakes add a comment at the beginning of the screenSize field if you want a default access modifier
+src/Graphics/MainFrame.java:14:	Use explicit scoping instead of the default package private level
+src/Graphics/MainFrame.java:14:	fieldCommentRequirement Required
+src/Graphics/MainFrame.java:15:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/Graphics/MainFrame.java:15:	Private field 'screenWidth' could be made final; it is only initialized in the declaration or constructor.
+src/Graphics/MainFrame.java:15:	fieldCommentRequirement Required
+src/Graphics/MainFrame.java:16:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/Graphics/MainFrame.java:16:	Private field 'screenHeight' could be made final; it is only initialized in the declaration or constructor.
+src/Graphics/MainFrame.java:16:	fieldCommentRequirement Required
+src/Graphics/MainFrame.java:18:	It is a good practice to call super() in a constructor
+src/Graphics/MainFrame.java:18:	publicMethodCommentRequirement Required
+src/Graphics_Tests/MainFrameTest.java:1:	Package name contains upper case characters
+src/Graphics_Tests/MainFrameTest.java:12:	Each class should declare at least one constructor
+src/Graphics_Tests/MainFrameTest.java:12:	headerCommentRequirement Required
+src/Graphics_Tests/MainFrameTest.java:13:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/Graphics_Tests/MainFrameTest.java:13:	fieldCommentRequirement Required
+src/Graphics_Tests/MainFrameTest.java:14:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/Graphics_Tests/MainFrameTest.java:14:	Perhaps 'kit' could be replaced by a local variable.
+src/Graphics_Tests/MainFrameTest.java:14:	fieldCommentRequirement Required
+src/Graphics_Tests/MainFrameTest.java:15:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/Graphics_Tests/MainFrameTest.java:15:	To avoid mistakes add a comment at the beginning of the screenSize field if you want a default access modifier
+src/Graphics_Tests/MainFrameTest.java:15:	Use explicit scoping instead of the default package private level
+src/Graphics_Tests/MainFrameTest.java:15:	fieldCommentRequirement Required
+src/Graphics_Tests/MainFrameTest.java:17:	publicMethodCommentRequirement Required
+src/Graphics_Tests/MainFrameTest.java:23:	Avoid catching NullPointerException; consider removing the cause of the NPE.
+src/Graphics_Tests/MainFrameTest.java:23:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/Graphics_Tests/MainFrameTest.java:23:	Avoid printStackTrace(); use a logger call instead.
+src/Graphics_Tests/MainFrameTest.java:23:	Potential violation of Law of Demeter (object not created locally)
+src/Graphics_Tests/MainFrameTest.java:27:	JUnit tests should not contain more than 1 assert(s).
+src/Graphics_Tests/MainFrameTest.java:27:	publicMethodCommentRequirement Required
+src/Graphics_Tests/MainFrameTest.java:28:	Local variable 'screenWidth' could be declared final
+src/Graphics_Tests/MainFrameTest.java:29:	Local variable 'screenHeight' could be declared final
