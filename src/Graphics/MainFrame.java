@@ -3,17 +3,18 @@ package Graphics;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class MainFrame extends JFrame{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	Toolkit kit = Toolkit.getDefaultToolkit();
 	Dimension screenSize = kit.getScreenSize();
 	private int screenWidth = screenSize.width;
 	private int screenHeight = screenSize.height;
+	private JButton button;
+	private JLabel label;
 	
 	public MainFrame(){
 		setVisible(true);
@@ -21,6 +22,9 @@ public class MainFrame extends JFrame{
 		setTitle("Greetings From Dimitri");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		button = new JButton();
+		label = new JLabel();
+		add(button);
+		add(label);
 	}
-
 }
