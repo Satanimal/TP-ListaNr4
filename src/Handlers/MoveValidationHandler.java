@@ -24,8 +24,8 @@ public final class MoveValidationHandler {
 	}
 	
 	private static boolean IsInRangeOfBoard(Stone playerMove){
-		return playerMove.coordinates.getX() > 0 || playerMove.coordinates.getX() < 20 ||
-			   playerMove.coordinates.getX() > 0 || playerMove.coordinates.getX() < 20;
+		return playerMove.coordinates.getX() > 0 && playerMove.coordinates.getX() < 20 &&
+			   playerMove.coordinates.getY() > 0 && playerMove.coordinates.getY() < 20;
 				
 	}
 }
