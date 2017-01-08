@@ -5,22 +5,24 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import Logic.Game;
+
 
 public class Server{
 	public static ArrayList<Socket> connections = new ArrayList<Socket>();
+	public static ArrayList<Game> listOfGames = new ArrayList<Game>();
 	public static ServerSocket listener;
     public static void main(String[] args) throws IOException {
         listener = new ServerSocket(9090);
-        
-	    /*InputStream inputStream = gameSocket.getInputStream();
-	    OutputStream outputStream = gameSocket.getOutputStream();
-	    ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-	    ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);*/
         
         //Start listening for incoming connections
         new Thread(new ConnectionLoopThread()).start();
         //infinite loop to stop server executio
         while(true){
         }
+    }
+    
+    public static void AddPlayerToTheGame(int gameId, String playerName){
+    	Game game = listOfGames.get(gameId);
     }
 }

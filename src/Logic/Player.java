@@ -3,10 +3,12 @@ package Logic;
 import Models.PlayerSide;
 
 public class Player implements IPlayer{
-	private PlayerSide _playerSide;
+	private PlayerSide playerSide;
+	private String playerName; 
 	
-	public Player(PlayerSide playerSide){
-		_playerSide = playerSide;
+	public Player(PlayerSide playerSide, String playerName){
+		this.playerSide = playerSide;
+		this.playerName = playerName;
 	}
 	
 	public void MakeMove() {
@@ -20,7 +22,10 @@ public class Player implements IPlayer{
 	}
 
 	public PlayerSide GetPlayerSide() {
-		return _playerSide;
+		return playerSide;
 	}
 	
+	public String GetPlayerName(){
+		return playerName;
+	}
 }
