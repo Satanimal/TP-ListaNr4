@@ -11,6 +11,8 @@ import java.net.Socket;
 
 import javax.swing.JOptionPane;
 
+import Graphics.LobbyFrame;
+
 public class Lobby{
 	//klasa ladujaca dane z serwera(liste gier) 
 	// i wyswietlajaca to w ramce 
