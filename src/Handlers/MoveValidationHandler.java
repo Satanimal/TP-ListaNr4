@@ -15,7 +15,7 @@ public final class MoveValidationHandler {
 			return false;
 		
 		for(Stone stone : board){
-			if(stone.coordinates.equals(playerMove))
+			if(stone.coordinates.equals(playerMove.coordinates))
 			{
 				return false;
 			}
