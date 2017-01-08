@@ -1,13 +1,15 @@
 package Graphics;
 
+import java.net.ServerSocket;
+
 import javax.swing.JFrame;
 
 import Client.BeforeClient;
 
 public class BeforeClientFrame extends JFrame{
-	private BeforeClient beforeClient;
+	private ServerSocket beforeClient;
 	
-	public BeforeClientFrame(BeforeClient beforeClient){
+	public BeforeClientFrame(ServerSocket beforeClient){
 		this.beforeClient = beforeClient;
 	}
 
