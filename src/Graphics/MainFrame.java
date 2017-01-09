@@ -19,7 +19,7 @@ public class MainFrame extends JFrame{
 	public MainFrame(){
 		setVisible(true);
 		setSize((2*screenWidth)/3, (2*screenHeight)/3);
-		setTitle("Greetings From Dimitri");
+		setTitle("Duo Heidi and Guderian");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
