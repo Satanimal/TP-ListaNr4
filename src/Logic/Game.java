@@ -23,6 +23,9 @@ public class Game {
 		return players;
 	}
 	
+	public int getId(){
+		return id;
+	}
 	static{
 		id = 1;
 	}

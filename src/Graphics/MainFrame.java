@@ -22,9 +22,5 @@ public class MainFrame extends JFrame{
 		setTitle("Greetings From Dimitri");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		button = new JButton();
-		label = new JLabel();
-		add(button);
-		add(label);
 	}
 }
