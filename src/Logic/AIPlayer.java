@@ -6,8 +6,7 @@ public class AIPlayer implements IPlayer{
 	private PlayerSide playerSide;
 	private String playerName;
 	
-	public AIPlayer(PlayerSide playerSide, String playerName){
-		this.playerSide = playerSide;
+	public AIPlayer(String playerName){
 		this.playerName = playerName;
 	}
 	
@@ -25,8 +24,11 @@ public class AIPlayer implements IPlayer{
 		return playerSide;
 	}
 
+	public void SetPlayerSide(PlayerSide playerSide){
+		this.playerSide = playerSide;
+	}
+	
 	public String GetPlayerName() {
 		return playerName;
 	}
-
 }

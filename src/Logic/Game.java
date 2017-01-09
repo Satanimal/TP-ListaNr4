@@ -26,6 +26,10 @@ public class Game {
 	public int getId(){
 		return id;
 	}
+	
+	public void StartGame(){
+	}
+	
 	static{
 		id = 1;
 	}

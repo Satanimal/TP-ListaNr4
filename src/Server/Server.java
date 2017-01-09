@@ -1,20 +1,24 @@
 package Server;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
 
+import Logic.AIPlayer;
 import Logic.Game;
+import Logic.IPlayer;
 import Logic.Player;
 import Models.PlayerSide;
 
 
 public class Server{
-	public static ArrayList<Socket> connections = new ArrayList<Socket>();
-	public static ArrayList<Game> listOfGames = new ArrayList<Game>();
-	public static ArrayList<String> listOfPlayersNames = new ArrayList<String>();
+	private static ArrayList<Socket> connections = new ArrayList<Socket>();
+	private static ArrayList<Game> listOfGames = new ArrayList<Game>();
+	private static ArrayList<String> listOfPlayersNames = new ArrayList<String>();
 	public static ServerSocket listener;
 	
 	
@@ -26,30 +30,52 @@ public class Server{
     }
     
     
-    public static void AddPlayerToTheGame(int gameId, String playerName){
+    public static void AddPlayerToTheGame(int gameId, IPlayer player){
+    	
     	Game game = listOfGames.get(gameId);
-    	Player player = new Player(GetPlayerSide(game), playerName);
     	game.getPlayers().add(player);
+    	
+    	if(game.getPlayers().size() == 2)
+    		game.StartGame();
     }
     
     
-    private static PlayerSide GetPlayerSide(Game game){	
-    	PlayerSide result;
+    public static int CreateGame(){
+    	Game game = new Game();
+    	listOfGames.add(game);
+    	return game.getId();
+    }
+    
+    
+    public static void SetPlayerSides(int gameId){	
+    	Game game = listOfGames.get(gameId);
+    	if(game.getPlayers().size() != 2) return;
     	
-    	if(game.getPlayers().size() == 0){
-        	Random rand = new Random();
-        	if(rand.nextInt(2) == 0)
-        		result = PlayerSide.White;
-        	else
-        		result = PlayerSide.Black; 
+    	Random rand = new Random();
+    	int result = rand.nextInt(2);
+    	
+    	if(result == 0){
+        	game.getPlayers().get(0).SetPlayerSide(PlayerSide.White);
+        	game.getPlayers().get(1).SetPlayerSide(PlayerSide.Black);
     	}
     	else{
-    		if(game.getPlayers().get(0).GetPlayerSide().equals(PlayerSide.Black))
-    			result = PlayerSide.White;
-    		else
-    			result = PlayerSide.Black;
+        	game.getPlayers().get(1).SetPlayerSide(PlayerSide.White);
+        	game.getPlayers().get(0).SetPlayerSide(PlayerSide.Black);
     	}
-    	
-    	return result;
     }
+
+
+	public static ArrayList<Socket> GetConnections() {
+		return connections;
+	}
+
+
+	public static ArrayList<String> GetListOfPlayersNames() {
+		return listOfPlayersNames;
+	}
+	
+	public static ArrayList<Game> GetListOfGames(){
+		return listOfGames;
+	}
+
 }

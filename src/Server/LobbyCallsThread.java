@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import Logic.AIPlayer;
 import Logic.Player;
 import Models.BaseSocketModel;
 import Models.JoinGameModel;
@@ -11,24 +12,22 @@ import Models.ListOfGamesModel;
 import Models.PlayerSide;
 
 public class LobbyCallsThread implements Runnable{
-	private ObjectInputStream objectInputStream;
-	private ObjectOutputStream objectOutputStream;
 	private String playerName;
+	private Player player;
 	
 	public LobbyCallsThread(
-			ObjectInputStream objectInputStream, 
+			ObjectInputStream objectInputStream,
 			ObjectOutputStream objectOutputStream,
 			String playerName){
-		this.objectInputStream = objectInputStream;
-		this.objectOutputStream = objectOutputStream;
 		this.playerName = playerName;
-		Server.listOfPlayersNames.add(playerName);
+		Server.GetListOfPlayersNames().add(playerName);
+		player = new Player(playerName, objectInputStream, objectOutputStream);
 	}
 	
 	public void run() {
 		try{
 			while(true){
-				BaseSocketModel message = (BaseSocketModel)objectInputStream.readObject();
+				BaseSocketModel message = (BaseSocketModel)player.GetInput().readObject();
 				
 				switch(message.message){
 					case "getListOfGames" : getListOfGames(); break;
@@ -47,21 +46,26 @@ public class LobbyCallsThread implements Runnable{
 	}
 
 	private void joinGameWithAI() {
-		
+		int id = Server.CreateGame();
+		Server.AddPlayerToTheGame(id, player);
+		AIPlayer bot = new AIPlayer("Artificial Intelligence");
+		Server.AddPlayerToTheGame(id, bot);
 	}
 
 	private void joinGame(int gameId) {
-		Server.AddPlayerToTheGame(gameId, playerName);
+		Server.AddPlayerToTheGame(gameId, player);
 	}
 
 	private void createGame() {
-		
+		int id = Server.CreateGame();
+		Server.AddPlayerToTheGame(id, player);
 	}
 
 	private void getListOfGames() {
-		ListOfGamesModel model = new ListOfGamesModel("listOfGames", Server.listOfGames);
+		ListOfGamesModel model = new ListOfGamesModel("listOfGames", Server.GetListOfGames());
 		try {
-			objectOutputStream.writeObject(model);
+			player.GetOutput().writeObject(model);
+			player.GetOutput().flush();
 		} catch (IOException ex) {
 			
 		}

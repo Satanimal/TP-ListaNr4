@@ -19,7 +19,7 @@ public class ConnectionLoopThread implements Runnable{
 		try{
 			while (true) {
 				Socket clientSocket = Server.listener.accept();
-	            Server.connections.add(clientSocket);
+	            Server.GetConnections().add(clientSocket);
 	            
 	    	    OutputStream outputStream = clientSocket.getOutputStream();
 	    	    InputStream inputStream = clientSocket.getInputStream();
@@ -42,8 +42,7 @@ public class ConnectionLoopThread implements Runnable{
 	    	    	}
 	    	    }
 	    	    
-	            new Thread(new LobbyCallsThread(
-	            		objectInputStream, objectOutputStream, playerName)).start();
+	            new Thread(new LobbyCallsThread(objectInputStream, objectOutputStream, playerName)).start();
 	        }
 		}
 		catch(IOException ex){
@@ -52,7 +51,7 @@ public class ConnectionLoopThread implements Runnable{
 	}
 
 	private boolean isAlreadyInUse(String name) {
-		return Server.listOfPlayersNames.contains(name);
+		return Server.GetListOfPlayersNames().contains(name);
 	}
 
 }
