@@ -7,6 +7,9 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
+import Logic.Game;
+import Logic.IPlayer;
+
 public class ConnectionLoopThread implements Runnable{
 	public ConnectionLoopThread(){
 		
@@ -18,21 +21,23 @@ public class ConnectionLoopThread implements Runnable{
 				Socket clientSocket = Server.listener.accept();
 	            Server.connections.add(clientSocket);
 	            
-	    	    InputStream inputStream = clientSocket.getInputStream();
 	    	    OutputStream outputStream = clientSocket.getOutputStream();
-	    	    ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+	    	    InputStream inputStream = clientSocket.getInputStream();
 	    	    ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-	            
-	    	    //wait for a player name
+	    	    ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+	    	    
 	    	    String playerName;
 	    	    while(true){
 	    	    	playerName = objectInputStream.readUTF();
 	    	    	
-	    	    	if(isValidName(playerName)){
+	    	    	if(!isAlreadyInUse(playerName)){
+	    	    		objectOutputStream.writeUTF("validName");
+	    	    		objectOutputStream.flush();
 	    	    		break;
 	    	    	}
 	    	    	else{
 	    	    		objectOutputStream.writeUTF("invalidOrAlreadyUsedName");
+	    	    		objectOutputStream.flush();
 	    	    		continue;
 	    	    	}
 	    	    }
@@ -46,8 +51,8 @@ public class ConnectionLoopThread implements Runnable{
 		}
 	}
 
-	private boolean isValidName(String name) {
-		return false;
+	private boolean isAlreadyInUse(String name) {
+		return Server.listOfPlayersNames.contains(name);
 	}
 
 }

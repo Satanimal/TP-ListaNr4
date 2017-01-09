@@ -22,6 +22,7 @@ public class LobbyCallsThread implements Runnable{
 		this.objectInputStream = objectInputStream;
 		this.objectOutputStream = objectOutputStream;
 		this.playerName = playerName;
+		Server.listOfPlayersNames.add(playerName);
 	}
 	
 	public void run() {

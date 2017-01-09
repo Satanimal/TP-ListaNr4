@@ -1,9 +1,7 @@
 package Client;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
@@ -21,13 +19,29 @@ public class Lobby{
 		String serverAddress = JOptionPane.showInputDialog(
 	            "Enter IP Address of a server\n");
 	    Socket gameSocket = new Socket(serverAddress, 9090);
-	    
-	    InputStream inputStream = gameSocket.getInputStream();
+	 
 	    OutputStream outputStream = gameSocket.getOutputStream();
-	    ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+	    InputStream inputStream = gameSocket.getInputStream();
 	    ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+	    ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+	    
+	    while(true){
+	    	String playerName = JOptionPane.showInputDialog("Wprowadz nazwê u¿ytkownika");
+	    	objectOutputStream.writeUTF(playerName);
+	    	objectOutputStream.flush();
+	    	
+	    	String response = objectInputStream.readUTF();
+	    	if(response.equals("validName")){
+	    		break;
+	    	}
+	    	else{
+	    		JOptionPane.showMessageDialog(null, "B³êdna lub u¿ywana nazwa");
+	    		continue;
+	    	}
+	    }
 	    
 	    LobbyFrame lobbyFrame = new LobbyFrame(objectInputStream, objectOutputStream);
+	    lobbyFrame.setVisible(true);
 	}
 
 }
