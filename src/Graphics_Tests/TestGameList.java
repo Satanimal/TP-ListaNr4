@@ -6,8 +6,8 @@ public class TestGameList {
 	private ArrayList<String> Przyklad;
 	
 	public static void main(String[] args){
-		CosNaprobe test = new CosNaprobe();
-		test.setVisible(true);
+		//CosNaprobe test = new CosNaprobe();
+		//test.setVisible(true);
 	}
 
 }

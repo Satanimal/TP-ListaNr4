@@ -1,11 +1,14 @@
 package Logic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Models.Stone;
 import Server.Server;
 
-public class Game{
+public class Game implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private static int generalId;
 	private int id;
 	private ArrayList<IPlayer> players;
@@ -32,7 +35,6 @@ public class Game{
 	
 	public void StartGame(){
 		Server.SetPlayerSides(id);
-		
 	}
 	
 	static{

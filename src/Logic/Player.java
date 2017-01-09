@@ -1,20 +1,21 @@
 package Logic;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.net.Socket;
 
 import Models.PlayerSide;
 
-public class Player implements IPlayer{
+public class Player implements IPlayer, Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private PlayerSide playerSide;
 	private String playerName;
-	private ObjectInputStream input;
-	private ObjectOutputStream output;
 	
-	public Player(String playerName, ObjectInputStream input, ObjectOutputStream output){
+	public Player(String playerName, Socket connection){
 		this.playerName = playerName;
-		this.input = input;
-		this.output = output;
 	}
 	
 	public void MakeMove() {
@@ -37,13 +38,5 @@ public class Player implements IPlayer{
 	
 	public String GetPlayerName(){
 		return playerName;
-	}
-	
-	public ObjectInputStream GetInput(){
-		return input;
-	}
-	
-	public ObjectOutputStream GetOutput(){
-		return output;
 	}
 }
