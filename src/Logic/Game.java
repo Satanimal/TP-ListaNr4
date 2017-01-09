@@ -3,14 +3,17 @@ package Logic;
 import java.util.ArrayList;
 
 import Models.Stone;
+import Server.Server;
 
-public class Game {
-	private static int id;
+public class Game{
+	private static int generalId;
+	private int id;
 	private ArrayList<IPlayer> players;
 	private ArrayList<Stone> board;
 	
 	public Game(){
-		id++;
+		id = generalId;
+		generalId++;
 		board = new ArrayList<Stone>();
 		players = new ArrayList<IPlayer>();
 	}
@@ -28,9 +31,11 @@ public class Game {
 	}
 	
 	public void StartGame(){
+		Server.SetPlayerSides(id);
+		
 	}
 	
 	static{
-		id = 1;
+		generalId = 0;
 	}
 }
