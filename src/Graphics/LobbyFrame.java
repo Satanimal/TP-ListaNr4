@@ -2,8 +2,6 @@ package Graphics;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -16,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 
-import Handlers.GraphicsHandler;
 import Logic.Game;
 import Models.BaseSocketModel;
 import Models.ListOfGamesModel;
@@ -43,6 +40,7 @@ public class LobbyFrame extends JFrame{
 		Panel.setLayout(new BorderLayout());
 		gameList = new ButtonGroup();
 		ScrollPane = new JScrollPane();
+		ScrollPane.setBounds(1, 1, 250, 250);
 			try {
 				outputStream.writeObject(new BaseSocketModel("getListOfGames"));
 				listOfGames = (ListOfGamesModel) inputStream.readObject();
@@ -70,11 +68,7 @@ public class LobbyFrame extends JFrame{
 		
 		ButtonPanel = new JPanel();
 		Panel.add(ButtonPanel, BorderLayout.PAGE_END);
-		//Buttony
-		//JoinButton = new JButton("Join Grame");
-		//JoinButton.addActionListener(new JoinGameListener(inputStream, outputStream, GraphicsHandler.getSelectedGame()));
-		//ButtonPanel.add(JoinButton);
-		
+
 		CreateGameButton = new JButton("Create Game");
 		CreateGameButton.addActionListener(new CreateGameListener(inputStream, outputStream));
 		ButtonPanel.add(CreateGameButton);

@@ -1,11 +1,12 @@
 package Logic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Models.Stone;
 import Server.Server;
 
-public class Game{
+public class Game implements Serializable{
 	private static int generalId;
 	private int id;
 	private ArrayList<IPlayer> players;
