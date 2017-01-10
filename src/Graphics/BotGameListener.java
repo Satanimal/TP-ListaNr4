@@ -13,13 +13,17 @@ import Models.BaseSocketModel;
 public class BotGameListener implements ActionListener{
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
-	public BotGameListener(ObjectInputStream input, ObjectOutputStream output){
+	private LobbyFrame frame;
+	public BotGameListener(ObjectInputStream input, ObjectOutputStream output, LobbyFrame frame){
 		this.input = input;
 		this.output = output;
+		this.frame = frame;
 	}
 	public void actionPerformed(ActionEvent e) {
 		try {
 			output.writeObject(new BaseSocketModel("joinGameWithAI"));
+			frame.setVisible(false);
+			MainFrame frame = new MainFrame(input,output);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}		

@@ -16,7 +16,7 @@ Dimension screenSize;
 	@Before
 	public void setUp() throws Exception {
 		try{
-		frame = new MainFrame();
+		//frame = new MainFrame();
 		kit = Toolkit.getDefaultToolkit();
 		screenSize = kit.getScreenSize();
 		}

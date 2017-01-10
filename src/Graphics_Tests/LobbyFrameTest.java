@@ -10,8 +10,8 @@ public class LobbyFrameTest {
 		LobbyFrame frame = new LobbyFrame(null, null);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		MainFrame frame2 = new MainFrame();
-		frame2.setVisible(true);
-		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//MainFrame frame2 = new MainFrame();
+		//frame2.setVisible(true);
+		//frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
