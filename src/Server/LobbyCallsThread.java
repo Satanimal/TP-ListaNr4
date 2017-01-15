@@ -3,7 +3,6 @@ package Server;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.Socket;
 
 import Logic.AIPlayer;
 import Logic.Player;
@@ -19,12 +18,12 @@ public class LobbyCallsThread implements Runnable{
 	public LobbyCallsThread(
 			ObjectInputStream objectInputStream,
 			ObjectOutputStream objectOutputStream,
-			String playerName,
-			Socket connection){
+			String playerName){
 		this.input = objectInputStream;
 		this.output = objectOutputStream;
+		
 		Server.GetListOfPlayersNames().add(playerName);
-		player = new Player(playerName, connection);
+		player = new Player(playerName, objectInputStream, objectOutputStream);
 	}
 	
 	public void run() {

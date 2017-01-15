@@ -4,30 +4,50 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.net.Socket;
+import java.util.ArrayList;
 
+import Handlers.MoveValidationHandler;
+import Models.BaseSocketModel;
+import Models.PlayerMoveModel;
 import Models.PlayerSide;
+import Models.Stone;
 
 public class Player implements IPlayer, Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private PlayerSide playerSide;
 	private String playerName;
+	private transient ObjectInputStream objectInputStream;
+	private transient ObjectOutputStream objectOutputStream;
 	
-	public Player(String playerName, Socket connection){
+	public Player(String playerName, ObjectInputStream objectInputStream, ObjectOutputStream objectOutputStream){
 		this.playerName = playerName;
+		this.objectInputStream = objectInputStream;
+		this.objectOutputStream = objectOutputStream;
 	}
 	
-	public void MakeMove() {
-		// TODO Auto-generated method stub
-		
+	public void MakeMove(ArrayList<Stone> board) throws IOException, ClassNotFoundException{
+		while(true){
+			objectOutputStream.writeObject(new BaseSocketModel("yourTurn"));
+			PlayerMoveModel moveModel = (PlayerMoveModel)objectInputStream.readObject();
+			if(MoveValidationHandler.IsValid(board, moveModel.move)){
+				board.add(moveModel.move);
+				break;
+			}
+			else{
+				objectOutputStream.writeObject(new BaseSocketModel("invalidMove"));
+				continue;
+			}
+		}
 	}
 
-	public void WaitForAction() {
-		// TODO Auto-generated method stub
-		
+	public void WaitForAction() throws IOException {
+		objectOutputStream.writeObject(new BaseSocketModel("opponentTurn"));
 	}
 
+	
+	
+	
 	public PlayerSide GetPlayerSide() {
 		return playerSide;
 	}

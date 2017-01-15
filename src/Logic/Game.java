@@ -21,6 +21,18 @@ public class Game implements Serializable{
 		players = new ArrayList<IPlayer>();
 	}
 	
+	public void StartGame(){
+		Server.SetPlayerSides(id);
+		new Thread(new GameLoopThread(this)).start();
+	}
+	
+	static{
+		generalId = 0;
+	}
+	
+	
+	
+	
 	public ArrayList<Stone> getBoard() {
 		return board;
 	}
@@ -31,13 +43,5 @@ public class Game implements Serializable{
 	
 	public int getId(){
 		return id;
-	}
-	
-	public void StartGame(){
-		Server.SetPlayerSides(id);
-	}
-	
-	static{
-		generalId = 0;
 	}
 }

@@ -1,17 +1,12 @@
 package Server;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
-
-import Logic.AIPlayer;
 import Logic.Game;
 import Logic.IPlayer;
-import Logic.Player;
 import Models.PlayerSide;
 
 
@@ -65,10 +60,11 @@ public class Server{
     }
 
 
+    
+    
 	public static ArrayList<Socket> GetConnections() {
 		return connections;
 	}
-
 
 	public static ArrayList<String> GetListOfPlayersNames() {
 		return listOfPlayersNames;

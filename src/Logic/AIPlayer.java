@@ -1,6 +1,10 @@
 package Logic;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import Models.PlayerSide;
+import Models.Stone;
 
 public class AIPlayer implements IPlayer{
 	private PlayerSide playerSide;
@@ -10,7 +14,7 @@ public class AIPlayer implements IPlayer{
 		this.playerName = playerName;
 	}
 	
-	public void MakeMove() {
+	public void MakeMove(ArrayList<Stone> board) throws ClassNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		
 	}

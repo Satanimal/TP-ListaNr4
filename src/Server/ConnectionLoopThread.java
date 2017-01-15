@@ -7,9 +7,6 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-import Logic.Game;
-import Logic.IPlayer;
-
 public class ConnectionLoopThread implements Runnable{
 	public ConnectionLoopThread(){
 		
@@ -42,7 +39,7 @@ public class ConnectionLoopThread implements Runnable{
 	    	    	}
 	    	    }
 	    	    
-	            new Thread(new LobbyCallsThread(objectInputStream, objectOutputStream, playerName, clientSocket)).start();
+	            new Thread(new LobbyCallsThread(objectInputStream, objectOutputStream, playerName)).start();
 	        }
 		}
 		catch(IOException ex){
