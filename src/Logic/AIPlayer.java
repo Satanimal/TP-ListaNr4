@@ -19,7 +19,7 @@ public class AIPlayer implements IPlayer{
 		
 	}
 
-	public void WaitForAction() {
+	public void WaitForAction(ArrayList<Stone> board) {
 		// TODO Auto-generated method stub
 		
 	}

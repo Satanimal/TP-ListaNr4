@@ -10,6 +10,7 @@ import Handlers.MoveValidationHandler;
 import Models.BaseSocketModel;
 import Models.PlayerMoveModel;
 import Models.PlayerSide;
+import Models.PlayerTurnModel;
 import Models.Stone;
 
 public class Player implements IPlayer, Serializable{
@@ -28,7 +29,7 @@ public class Player implements IPlayer, Serializable{
 	
 	public void MakeMove(ArrayList<Stone> board) throws IOException, ClassNotFoundException{
 		while(true){
-			objectOutputStream.writeObject(new BaseSocketModel("yourTurn"));
+			objectOutputStream.writeObject(new PlayerTurnModel("yourTurn", board));
 			PlayerMoveModel moveModel = (PlayerMoveModel)objectInputStream.readObject();
 			if(MoveValidationHandler.IsValid(board, moveModel.move)){
 				board.add(moveModel.move);
@@ -41,8 +42,8 @@ public class Player implements IPlayer, Serializable{
 		}
 	}
 
-	public void WaitForAction() throws IOException {
-		objectOutputStream.writeObject(new BaseSocketModel("opponentTurn"));
+	public void WaitForAction(ArrayList<Stone> board) throws IOException {
+		objectOutputStream.writeObject(new PlayerTurnModel("opponentTurn", board));
 	}
 
 	
