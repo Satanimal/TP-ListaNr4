@@ -45,7 +45,7 @@ public class MainFrame extends JFrame{
 		this.output = output;
 		setLayout(new FlowLayout(0));
 		
-		board = new Board(((2*screenHeight)/3) , ((2*screenHeight)/3));
+		board = new Board(((2*screenHeight)/3) , ((2*screenHeight)/3), output, input, messageCointainer);
 		board.setPreferredSize(new Dimension(((2*screenHeight)/3), (2*screenHeight)/3));
 		add(board, FlowLayout.LEFT);
 		
@@ -54,6 +54,7 @@ public class MainFrame extends JFrame{
 		messageCointainer.setForeground(Color.DARK_GRAY);
 		messageCointainer.setPreferredSize(new Dimension(screenWidth - 2*board.getWidth() ,(2*screenHeight)/3 +50));
 		messageCointainer.setText("");
+		messageCointainer.setBorder( new TitledBorder ( new EtchedBorder (), "" ) );
 		add(messageCointainer, FlowLayout.CENTER);
 
 		

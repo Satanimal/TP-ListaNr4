@@ -32,7 +32,9 @@ public class Player implements IPlayer, Serializable{
 			objectOutputStream.writeObject(new PlayerTurnModel("yourTurn", board));
 			PlayerMoveModel moveModel = (PlayerMoveModel)objectInputStream.readObject();
 			if(MoveValidationHandler.IsValid(board, moveModel.move)){
+				moveModel.move.color = playerSide;
 				board.add(moveModel.move);
+				objectOutputStream.writeObject(new BaseSocketModel("validMove"));
 				break;
 			}
 			else{

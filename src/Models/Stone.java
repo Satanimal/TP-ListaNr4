@@ -9,8 +9,7 @@ public class Stone implements Serializable{
 	public Point2D coordinates;
 	public PlayerSide color;
 	
-	public Stone(Point2D coordinates, PlayerSide playerSide){
+	public Stone(Point2D coordinates){
 		this.coordinates = coordinates;
-		this.color = playerSide;
 	}
 }

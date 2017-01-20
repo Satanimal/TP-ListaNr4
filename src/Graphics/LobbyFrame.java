@@ -54,15 +54,13 @@ public class LobbyFrame extends JFrame{
 			}
 		for(Game game : list){
 			if(game.getPlayers().size()!= 2){
-				joinGame = new JButton(game.getPlayers().toString());
+				joinGame = new JButton(game.getPlayers().get(0).GetPlayerName());
 				joinGame.addActionListener(new JoinGameListener(inputStream, outputStream, game, LobbyFrame.this));
 				GameListArea.add(joinGame);
 			}
 		}
 		scrollPane = new JScrollPane(GameListArea);
 		scrollPane.setBounds(0,0, 400, 200);
-        //scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        //scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 		Panel.add(scrollPane);
 
