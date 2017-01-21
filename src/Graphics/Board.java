@@ -29,8 +29,11 @@ public class Board extends JPanel implements Runnable{
 	private ObjectInputStream input;
 	private ArrayList<Stone> points;
 	private PlayerTurnModel stoneList;
+	private BaseSocketModel message;
 	private JTextArea text;
 	public int mnoznik = width/21;
+	public boolean moveValue;
+	private BoardActionListener listener;
 	public Board(int width, int height, ObjectOutputStream output, ObjectInputStream input, JTextArea text){
 		super();
 		this.input = input;
@@ -41,28 +44,45 @@ public class Board extends JPanel implements Runnable{
 		setSize(width , height );
 		setBorder( new TitledBorder ( new EtchedBorder (), "" ) );
 		setForeground(Color.BLACK);
-		addMouseListener(new BoardActionListener(this, input, output, mnoznik));
+		listener = new BoardActionListener(this, input, output, mnoznik);
+		addMouseListener(listener);
+		new Thread(listener).start();
+		
 		}
     	@Override
     	public void run() {
     		while(true){
     			try {
-    			stoneList = (PlayerTurnModel) input.readObject();
-				setListOfPoints(stoneList.board);
-				text.setText(stoneList.message);
-    			} catch (IOException e) {
-    				e.printStackTrace();
-    			} catch (ClassNotFoundException e) {
-    				text.setText(stoneList.message);
-    	    		continue;
+    			message = (BaseSocketModel) input.readObject();
+    			System.out.println(message.message);
+    			text.setText(message.message);
+    			switch(message.message){
+    				case  "yourTurn" : stoneList = (PlayerTurnModel) message;
+    						setListOfPoints(stoneList.board);
+    						moveValue = true;
+    						repaint();
+    						break;
+    				case "opponentTurn" : 
+    						stoneList = (PlayerTurnModel) message;
+    						setListOfPoints(stoneList.board);
+    						moveValue = false;
+    						repaint();
+    						break;
+    				case "invalidMove" : JOptionPane.showMessageDialog(null, "B³êdny ruch");
+    						moveValue = true;
+    						break;
     			}
+    			} catch (IOException e) {
+    				System.exit(1);
+    				e.printStackTrace();
+    			} catch (ClassNotFoundException e) {}
     	}
 	}
 		public void setListOfPoints(ArrayList<Stone> points){
 			this.points = points;
 		}
 	
-	    public void doDrawing(Graphics g) {
+	    private void doDrawing(Graphics g) {
 
 	        Graphics2D g2d = (Graphics2D) g;
 	        g2d.setColor(Color.BLACK);
@@ -93,7 +113,7 @@ public class Board extends JPanel implements Runnable{
 	        		}
 	        	}
 	    }}
-	    
+	    	
 
 	    @Override
 	    public void paintComponent(Graphics g) {

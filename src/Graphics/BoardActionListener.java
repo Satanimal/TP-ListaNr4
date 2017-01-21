@@ -15,7 +15,7 @@ import Models.PlayerMoveModel;
 import Models.PlayerTurnModel;
 import Models.Stone;
 
-public class BoardActionListener implements MouseListener{
+public class BoardActionListener implements MouseListener, Runnable{
 	private Board board;
 	private ObjectOutputStream output;
 	private ObjectInputStream input;
@@ -69,13 +69,19 @@ public class BoardActionListener implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		try {
-			point.setLocation(HandlerX(mnoznik, board.width , arg0.getX()), HandlerY(mnoznik,board.width, arg0.getY()));
-			output.writeObject(new  PlayerMoveModel("", new Stone(point)));
-		} catch (IOException e) {
-			e.printStackTrace();
+			try {
+				point.setLocation(HandlerX(mnoznik, board.width , arg0.getX()), HandlerY(mnoznik,board.width, arg0.getY()));
+				board.moveValue = false;
+				output.writeObject(new  PlayerMoveModel("", new Stone(point)));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-	}
+	
 	@Override
 	public void mouseReleased(MouseEvent arg0) {}
+
+	@Override
+	public void run() {
+	}
 }

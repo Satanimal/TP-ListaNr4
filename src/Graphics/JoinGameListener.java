@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import javax.swing.JFrame;
-
 import Logic.Game;
 import Models.JoinGameModel;
 
@@ -31,6 +29,7 @@ public class JoinGameListener implements ActionListener{
 				@Override
 				public void run() {
 					MainFrame frame = new MainFrame(input,output);
+					
 				}
 				
 			});

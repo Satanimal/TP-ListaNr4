@@ -1,27 +1,15 @@
 package Graphics;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.geom.Rectangle2D;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
@@ -32,10 +20,7 @@ public class MainFrame extends JFrame{
 	private final int screenWidth = screenSize.width;
 	private final int screenHeight = screenSize.height;
 	private JTextArea messageCointainer;
-	private Container panel;
-	private JScrollPane scroll;
 	private Board board;
-	
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
 	
@@ -44,20 +29,18 @@ public class MainFrame extends JFrame{
 		this.input = input;
 		this.output = output;
 		setLayout(new FlowLayout(0));
-		
-		board = new Board(((2*screenHeight)/3) , ((2*screenHeight)/3), output, input, messageCointainer);
-		board.setPreferredSize(new Dimension(((2*screenHeight)/3), (2*screenHeight)/3));
-		add(board, FlowLayout.LEFT);
-		
 		messageCointainer = new JTextArea();
+		board = new Board(((2*screenHeight)/3) , ((2*screenHeight)/3), output, input, messageCointainer);
 		messageCointainer.setFont(new Font("SansSerif", Font.PLAIN , 12));
 		messageCointainer.setForeground(Color.DARK_GRAY);
 		messageCointainer.setPreferredSize(new Dimension(screenWidth - 2*board.getWidth() ,(2*screenHeight)/3 +50));
 		messageCointainer.setText("");
 		messageCointainer.setBorder( new TitledBorder ( new EtchedBorder (), "" ) );
-		add(messageCointainer, FlowLayout.CENTER);
-
 		
+		board.setPreferredSize(new Dimension(((2*screenHeight)/3), (2*screenHeight)/3));
+		add(board, FlowLayout.LEFT);
+		add(messageCointainer, FlowLayout.CENTER);
+		new Thread(board).start();
 		
 		
 		setVisible(true);
