@@ -6,6 +6,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.net.SocketPermission;
 
 import javax.swing.JOptionPane;
 
@@ -19,7 +20,7 @@ public class Lobby{
 		String serverAddress = JOptionPane.showInputDialog(
 	            "Enter IP Address of a server\n");
 	    Socket gameSocket = new Socket(serverAddress, 9090);
-	 
+	    SocketPermission p1 = new SocketPermission("localhost:9090", "accept,connect,listen");
 	    OutputStream outputStream = gameSocket.getOutputStream();
 	    InputStream inputStream = gameSocket.getInputStream();
 	    ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);

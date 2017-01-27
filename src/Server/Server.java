@@ -3,6 +3,7 @@ package Server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketPermission;
 import java.util.ArrayList;
 import java.util.Random;
 import Logic.Game;
@@ -19,7 +20,7 @@ public class Server{
 	
     public static void main(String[] args) throws IOException {
         listener = new ServerSocket(9090);
-        
+        SocketPermission p1 = new SocketPermission("localhost:9090", "accept,connect,listen");
         //Start listening for incoming connections
         new Thread(new ConnectionLoopThread()).start();
     }
