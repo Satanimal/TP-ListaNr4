@@ -14,7 +14,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 public class MainFrame extends JFrame{
-
+	private static final long serialVersionUID = 1L;
 	Toolkit kit = Toolkit.getDefaultToolkit();
 	Dimension screenSize = kit.getScreenSize();
 	private final int screenWidth = screenSize.width;
@@ -30,7 +30,7 @@ public class MainFrame extends JFrame{
 		this.output = output;
 		setLayout(new FlowLayout(0));
 		messageCointainer = new JTextArea();
-		board = new Board(((2*screenHeight)/3) , ((2*screenHeight)/3), output, input, messageCointainer);
+		board = new Board(((2*screenHeight)/3) , ((2*screenHeight)/3), this.output, this.input, messageCointainer);
 		messageCointainer.setFont(new Font("SansSerif", Font.PLAIN , 12));
 		messageCointainer.setForeground(Color.DARK_GRAY);
 		messageCointainer.setPreferredSize(new Dimension(screenWidth - 2*board.getWidth() ,(2*screenHeight)/3 +50));
@@ -40,8 +40,6 @@ public class MainFrame extends JFrame{
 		board.setPreferredSize(new Dimension(((2*screenHeight)/3), (2*screenHeight)/3));
 		add(board, FlowLayout.LEFT);
 		add(messageCointainer, FlowLayout.CENTER);
-		new Thread(board).start();
-		
 		
 		setVisible(true);
 		setSize((2*screenWidth)/3, (2*screenHeight)/3 +50);

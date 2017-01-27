@@ -1,4 +1,4 @@
-package Graphics_Tests;
+package Graphics.Tests;
 
 import static org.junit.Assert.*;
 

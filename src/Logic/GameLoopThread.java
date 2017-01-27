@@ -21,8 +21,13 @@ public class GameLoopThread implements Runnable{
 			try {
 				oppositePlayer.WaitForAction(game.getBoard());
 				currentPlayer.MakeMove(game.getBoard());
-			} catch (ClassNotFoundException | IOException e) {
+			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
+				System.exit(-1);
+			}
+			catch(IOException e){
+				e.printStackTrace();
+				System.exit(-1);
 			}
 			
 			swapPlayers();

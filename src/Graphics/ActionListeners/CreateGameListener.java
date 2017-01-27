@@ -1,4 +1,4 @@
-package Graphics;
+package Graphics.ActionListeners;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import Graphics.LobbyFrame;
+import Graphics.MainFrame;
 import Models.BaseSocketModel;
 
 public class CreateGameListener implements ActionListener{
@@ -20,6 +22,7 @@ public class CreateGameListener implements ActionListener{
 	}
 	public void actionPerformed(ActionEvent arg0) {
 		try {
+			output.reset();
 			output.writeObject(new BaseSocketModel("createGame"));
 			frame.setVisible(false);
 			EventQueue.invokeLater(new Runnable(){

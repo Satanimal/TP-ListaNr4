@@ -1,31 +1,21 @@
-package Graphics;
+package Graphics.ActionListeners;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.util.Random;
 
-import javax.swing.JOptionPane;
-
-import Handlers.GraphicsHandler;
-import Models.BaseSocketModel;
-import Models.PlayerMoveModel;
+import Graphics.Board;
 import Models.PlayerTurnModel;
 import Models.Stone;
 
-public class BoardActionListener implements MouseListener, Runnable{
+public class BoardActionListener implements MouseListener{
 	private Board board;
-	private ObjectOutputStream output;
-	private ObjectInputStream input;
 	private PlayerTurnModel model;
 	private int mnoznik;
 	private Point2D point;
-	public BoardActionListener(Board board, ObjectInputStream input, ObjectOutputStream output, int mnoznik){
+	public BoardActionListener(Board board, int mnoznik){
 		this.board = board;
-		this.input = input;
-		this.output = output;
 		this.mnoznik = mnoznik;
 		point = new Point2D.Double();
 	}
@@ -69,19 +59,10 @@ public class BoardActionListener implements MouseListener, Runnable{
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-			try {
-				point.setLocation(HandlerX(mnoznik, board.width , arg0.getX()), HandlerY(mnoznik,board.width, arg0.getY()));
-				board.moveValue = false;
-				output.writeObject(new  PlayerMoveModel("", new Stone(point)));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		point.setLocation(new Random().nextInt(19),new Random().nextInt(19));
+		board.playerMove = new Stone(point);
+	}
 	
 	@Override
 	public void mouseReleased(MouseEvent arg0) {}
-
-	@Override
-	public void run() {
-	}
 }

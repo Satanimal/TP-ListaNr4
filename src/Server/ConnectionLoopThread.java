@@ -38,7 +38,7 @@ public class ConnectionLoopThread implements Runnable{
 	    	    		continue;
 	    	    	}
 	    	    }
-	    	    
+	    	    objectOutputStream.reset();
 	            new Thread(new LobbyCallsThread(objectInputStream, objectOutputStream, playerName)).start();
 	        }
 		}

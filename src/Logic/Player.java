@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.SocketException;
 import java.util.ArrayList;
 
 import Handlers.MoveValidationHandler;
 import Models.BaseSocketModel;
-import Models.PlayerMoveModel;
 import Models.PlayerSide;
 import Models.PlayerTurnModel;
 import Models.Stone;
@@ -24,27 +24,33 @@ public class Player implements IPlayer, Serializable{
 	public Player(String playerName, ObjectInputStream objectInputStream, ObjectOutputStream objectOutputStream){
 		this.playerName = playerName;
 		this.objectInputStream = objectInputStream;
-		this.objectOutputStream = objectOutputStream;
+		this.objectOutputStream = objectOutputStream; 
 	}
 	
-	public void MakeMove(ArrayList<Stone> board) throws IOException, ClassNotFoundException{
+	public void MakeMove(ArrayList<Stone> board) throws IOException, ClassNotFoundException, SocketException{
+		objectOutputStream.reset();
+		objectOutputStream.writeObject(new PlayerTurnModel("yourTurn", board));
+		
 		while(true){
-			objectOutputStream.writeObject(new PlayerTurnModel("yourTurn", board));
-			PlayerMoveModel moveModel = (PlayerMoveModel)objectInputStream.readObject();
-			if(MoveValidationHandler.IsValid(board, moveModel.move)){
-				moveModel.move.color = playerSide;
-				board.add(moveModel.move);
+			PlayerTurnModel moveModel = (PlayerTurnModel) objectInputStream.readObject();
+			Stone playerMove = moveModel.board.get(0);
+			playerMove.color = playerSide;
+			
+			if(MoveValidationHandler.IsValid(board, playerMove)){
+				board.add(playerMove);
+				objectOutputStream.reset();
 				objectOutputStream.writeObject(new BaseSocketModel("validMove"));
 				break;
 			}
 			else{
+				objectOutputStream.reset();
 				objectOutputStream.writeObject(new BaseSocketModel("invalidMove"));
-				continue;
 			}
 		}
 	}
 
-	public void WaitForAction(ArrayList<Stone> board) throws IOException {
+	public void WaitForAction(ArrayList<Stone> board) throws IOException, ClassNotFoundException, SocketException {
+		objectOutputStream.reset();
 		objectOutputStream.writeObject(new PlayerTurnModel("opponentTurn", board));
 	}
 

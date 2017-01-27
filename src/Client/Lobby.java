@@ -39,7 +39,7 @@ public class Lobby{
 	    		continue;
 	    	}
 	    }
-	    
+    	objectOutputStream.reset();
 	    LobbyFrame lobbyFrame = new LobbyFrame(objectInputStream, objectOutputStream);
 	    lobbyFrame.setVisible(true);
 	}

@@ -1,4 +1,4 @@
-package Graphics;
+package Graphics.ActionListeners;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import javax.swing.JFrame;
-
+import Graphics.LobbyFrame;
+import Graphics.MainFrame;
 import Models.BaseSocketModel;
 
 public class BotGameListener implements ActionListener{
@@ -22,6 +22,7 @@ public class BotGameListener implements ActionListener{
 	}
 	public void actionPerformed(ActionEvent e) {
 		try {
+			output.reset();
 			output.writeObject(new BaseSocketModel("joinGameWithAI"));
 			frame.setVisible(false);
 			EventQueue.invokeLater(new Runnable(){

@@ -66,6 +66,7 @@ public class LobbyCallsThread implements Runnable{
 	private void getListOfGames() {
 		ListOfGamesModel model = new ListOfGamesModel("listOfGames", Server.GetListOfGames());
 		try {
+			output.reset();
 			output.writeObject(model);
 			output.flush();
 		} catch (IOException ex) {
