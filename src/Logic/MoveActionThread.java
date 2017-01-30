@@ -31,13 +31,14 @@ public class MoveActionThread implements Runnable{
 				board.text.setText(message.message);
 				switch(message.message){
 					case  "yourTurn" :
-							board.setListOfPoints(message.board);
 							board.moveValue = true;
-							MakeMove();
+							board.playerMove = null;
+							board.setListOfPoints(message.board);
 							board.repaint();
+							MakeMove();
 							break;
 					case "opponentTurn" : 
-						board.moveValue = false;
+							board.moveValue = false;
 							board.setListOfPoints(message.board);
 							board.repaint();
 							break;
