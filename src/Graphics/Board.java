@@ -67,10 +67,10 @@ public class Board extends JPanel{
 	        		else{
 	        			if(f.color.equals(PlayerSide.Black)){
 	        				g2d.setColor(Color.BLACK);
-	        				g2d.fillOval((int)f.coordinates.getX() * mnoznik, (int) f.coordinates.getY() * mnoznik, sizeOfPoint, sizeOfPoint);
+	        				g2d.fillOval((int)f.coordinates.getX() * mnoznik - sizeOfPoint/2, (int) f.coordinates.getY() * mnoznik - sizeOfPoint/2, sizeOfPoint, sizeOfPoint);
 	        			}else{
 	        				g2d.setColor(Color.WHITE);
-	        				g2d.fillOval((int)f.coordinates.getX() * mnoznik, (int) f.coordinates.getY() * mnoznik, sizeOfPoint, sizeOfPoint);
+	        				g2d.fillOval((int)f.coordinates.getX() * mnoznik - sizeOfPoint/2, (int) f.coordinates.getY() * mnoznik - sizeOfPoint/2, sizeOfPoint, sizeOfPoint);
 	        			}
 	        		}
 	        	}
