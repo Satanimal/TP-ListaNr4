@@ -29,8 +29,9 @@ public class BoardActionListener implements MouseListener{
     private double HandlerX(int width ,int x){
 		int a =0;
 		int coordinateX;
-		int start = (int) width/20;
-		coordinateX = start;
+		int start = (int) width/21;
+		x -= start;
+		coordinateX = 0;
 		do{
 			coordinateX = coordinateX + start;
 			a++;
@@ -47,8 +48,9 @@ public class BoardActionListener implements MouseListener{
 	private double HandlerY(int width ,int y){
 		int a =0;
 		int coordinateY;
-		int start = (int) width/20;
-		coordinateY = start;
+		int start = (int) width/21;
+		y -= start;
+		coordinateY = 0;
 		do{
 			coordinateY = coordinateY + start;
 			a++;
