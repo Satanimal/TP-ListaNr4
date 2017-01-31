@@ -1,10 +1,14 @@
 package Server;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import Logic.Game;
 import Logic.IPlayer;
+import Logic.Player;
 import Models.PlayerSide;
+import Models.PlayerTurnModel;
 
 /**
  * W¹tek odpowiedzialny za rozgrywkê.
@@ -32,6 +36,27 @@ public class GameLoopThread implements Runnable{
 				System.exit(-1);
 			}
 			catch(IOException e){
+				IPlayer playerToInform = null;
+				for(StackTraceElement element : e.getStackTrace()){
+					if(element.getMethodName().equals("MakeMove")){
+						playerToInform = oppositePlayer;
+						break;
+					}
+					if(element.getMethodName().equals("WaitForAction")){
+						playerToInform = currentPlayer;
+						break;
+					}
+				}
+				
+				try {
+					((Player) playerToInform).getObjectOutputStream().writeObject(new PlayerTurnModel("playerLeft", null));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				catch(ClassCastException es){
+					
+				}
+				
 				Server.GetListOfGames().remove(this);
 				return;
 			}

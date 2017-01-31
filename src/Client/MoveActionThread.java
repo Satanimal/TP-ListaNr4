@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import Graphics.Board;
 import Models.BaseSocketModel;
 import Models.PlayerTurnModel;
@@ -50,6 +52,9 @@ public class MoveActionThread implements Runnable{
 							board.moveValue = false;
 							board.setListOfPoints(message.board);
 							board.repaint();
+							break;
+					case "playerLeft":
+							JOptionPane.showMessageDialog(null, "Przeciwnik wyszed³ lub podda³ siê");
 							break;
 				}
 			} 
