@@ -24,6 +24,7 @@ public class RefreshListOfGamesListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		try {
 			output.writeObject(new BaseSocketModel("getListOfGames"));
+			output.reset();
 			ListOfGamesModel model = (ListOfGamesModel) input.readObject();
 			frame.addGamesToTheList(model.listOfGames);
 		} catch (IOException e1) {
