@@ -84,8 +84,4 @@ public class Player implements IPlayer, Serializable{
 	public String GetPlayerName(){
 		return playerName;
 	}
-	
-	public ObjectOutputStream getObjectOutputStream(){
-		return objectOutputStream;
-	}
 }
