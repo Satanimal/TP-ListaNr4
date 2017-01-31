@@ -10,12 +10,21 @@ import Models.BaseSocketModel;
 import Models.PlayerTurnModel;
 import Models.Stone;
 
+/**
+ * W¹tek odpowiadaj¹cy za oczekiwanie na kolejkê garcza, lub wykonywanie ruchu
+ */
 public class MoveActionThread implements Runnable{
 	private Board board;
 	private PlayerTurnModel message;
 	private ObjectInputStream input; 
 	private ObjectOutputStream output;
 	
+	/**
+	 * Konstruktor w¹tku
+	 * @param board Plansza
+	 * @param input Strumieñ wejœcia do komuniakcji z serwerem
+	 * @param output Strumieñ wyjœcia do komunikacji z serwerem
+	 */
 	public MoveActionThread(Board board, ObjectInputStream input, ObjectOutputStream output) {
 		this.board = board;
 		this.input = input;
@@ -52,6 +61,10 @@ public class MoveActionThread implements Runnable{
 		}
 	}
 
+	/**
+	 * Metoda pomocnicza zawieraj¹ca pêtlê oczekuj¹c¹ na prawid³owy ruch gracza
+	 * @throws ClassNotFoundException
+	 */
 	private void MakeMove() throws ClassNotFoundException {
 		while(board.moveValue == true){
 			

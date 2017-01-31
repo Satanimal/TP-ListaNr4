@@ -2,6 +2,7 @@ package Logic;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -9,14 +10,25 @@ import Handlers.MoveValidationHandler;
 import Models.PlayerSide;
 import Models.Stone;
 
-public class AIPlayer implements IPlayer{
+/**
+ * Klasa reprezentuj¹ca bota
+ */
+public class AIPlayer implements IPlayer, Serializable{
+	private static final long serialVersionUID = 1L;
 	private PlayerSide playerSide;
 	private String playerName;
 	
+	/**
+	 * Kontruktor
+	 * @param playerName Nazwa bota
+	 */
 	public AIPlayer(String playerName){
 		this.playerName = playerName;
 	}
 	
+	/**
+	 * Bot wykonuje ruch losuj¹c punkt na planszy, dopóki nie trafi na dostêpny i prawid³owy
+	 */
 	public void MakeMove(ArrayList<Stone> board) throws ClassNotFoundException, IOException {
 		Stone move = null;
 		Random rand = new Random();
@@ -29,6 +41,12 @@ public class AIPlayer implements IPlayer{
 			move.color = playerSide;
 			board.add(move);
 			break;
+		}
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 

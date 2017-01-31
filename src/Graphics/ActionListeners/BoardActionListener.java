@@ -3,15 +3,15 @@ package Graphics.ActionListeners;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
-import java.util.Random;
 
 import Graphics.Board;
-import Models.PlayerTurnModel;
 import Models.Stone;
 
+/**
+ * ActionListener dla planszy, zbieraj¹cy ruchy gracza
+ */
 public class BoardActionListener implements MouseListener{
 	private Board board;
-	private PlayerTurnModel model;
 	private int mnoznik;
 	private Point2D point;
 	public BoardActionListener(Board board, int mnoznik){
@@ -20,7 +20,13 @@ public class BoardActionListener implements MouseListener{
 		point = new Point2D.Double();
 	}
 
-    private double HandlerX(int mnoznik, int width ,int x){
+	/**
+	 * Przelicza wspó³rzêdne klikniêcia na indeks planszy
+	 * @param width szerokoœæ planszy
+	 * @param x zebrana wspó³rzêdna x z klikniêcia gracza
+	 * @return najbli¿szy do klikniêcia indeks
+	 */
+    private double HandlerX(int width ,int x){
 		int a =0;
 		int coordinateX;
 		int start = (int) width/20;
@@ -31,7 +37,14 @@ public class BoardActionListener implements MouseListener{
 		}while(coordinateX <=x);
 		return (coordinateX - x < start/2) ? (double) a-1 : (double) a;
 	}
-	private double HandlerY(int mnoznik, int width ,int y){
+    
+	/**
+	 * Przelicza wspó³rzêdne klikniêcia na indeks planszy
+	 * @param width szerokoœæ planszy
+	 * @param y zebrana wspó³rzêdna y z klikniêcia gracza
+	 * @return najbli¿szy do klikniêcia indeks
+	 */
+	private double HandlerY(int width ,int y){
 		int a =0;
 		int coordinateY;
 		int start = (int) width/20;
@@ -53,7 +66,7 @@ public class BoardActionListener implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		point.setLocation(HandlerX(mnoznik, board.width,arg0.getX()),HandlerY(mnoznik, board.width,arg0.getY()));
+		point.setLocation(HandlerX(board.width,arg0.getX()),HandlerY(board.width,arg0.getY()));
 		board.playerMove = new Stone(point);
 	}
 	
