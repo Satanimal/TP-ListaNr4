@@ -1,8 +1,11 @@
 package Logic;
 
+import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
+import Handlers.MoveValidationHandler;
 import Models.PlayerSide;
 import Models.Stone;
 
@@ -15,13 +18,21 @@ public class AIPlayer implements IPlayer{
 	}
 	
 	public void MakeMove(ArrayList<Stone> board) throws ClassNotFoundException, IOException {
-		// TODO Auto-generated method stub
+		Stone move = null;
+		Random rand = new Random();
 		
+		while(true){
+			move = new Stone(new Point2D.Double(rand.nextInt(19), rand.nextInt(19)));
+			if(!MoveValidationHandler.IsValid(board, move))
+				continue;
+			
+			move.color = playerSide;
+			board.add(move);
+			break;
+		}
 	}
 
 	public void WaitForAction(ArrayList<Stone> board) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public PlayerSide GetPlayerSide() {
