@@ -1,7 +1,9 @@
-package Logic;
+package Server;
 
 import java.io.IOException;
 
+import Logic.Game;
+import Logic.IPlayer;
 import Models.PlayerSide;
 
 public class GameLoopThread implements Runnable{
@@ -26,8 +28,8 @@ public class GameLoopThread implements Runnable{
 				System.exit(-1);
 			}
 			catch(IOException e){
-				e.printStackTrace();
-				System.exit(-1);
+				Server.GetListOfGames().remove(this);
+				return;
 			}
 			
 			swapPlayers();

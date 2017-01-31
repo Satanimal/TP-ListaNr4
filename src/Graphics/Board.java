@@ -12,8 +12,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import Client.MoveActionThread;
 import Graphics.ActionListeners.BoardActionListener;
-import Logic.MoveActionThread;
 import Models.PlayerSide;
 import Models.Stone;
 

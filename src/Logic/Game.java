@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import Models.Stone;
+import Server.GameLoopThread;
 import Server.Server;
 
 public class Game implements Serializable{
