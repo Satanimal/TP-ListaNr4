@@ -43,9 +43,17 @@ public class GameLoopThread implements Runnable{
 	/**
 	 * Ustala gracza aktualnie wykonuj¹cego ruch
 	 */
-	private void swapPlayers(){
+	public void swapPlayers(){
 		IPlayer temp = currentPlayer;
 		currentPlayer = oppositePlayer;
 		oppositePlayer = temp;
+	}
+	
+	public IPlayer getCurrentPlayer(){
+		return currentPlayer;
+	}
+	
+	public IPlayer getOpositePlayer(){
+		return oppositePlayer;
 	}
 }

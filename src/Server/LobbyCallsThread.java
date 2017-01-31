@@ -59,7 +59,7 @@ public class LobbyCallsThread implements Runnable{
 	/**
 	 * Rozpoczyna now¹ grê z botem
 	 */
-	private void joinGameWithAI() {
+	public void joinGameWithAI() {
 		int id = Server.CreateGame();
 		Server.AddPlayerToTheGame(id, player);
 		AIPlayer bot = new AIPlayer("Artificial Intelligence");
@@ -70,14 +70,14 @@ public class LobbyCallsThread implements Runnable{
 	 * Do³¹cza gracza do gry o wskazanym ID
 	 * @param gameId ID gry docelowej
 	 */
-	private void joinGame(int gameId) {
+	public void joinGame(int gameId) {
 		Server.AddPlayerToTheGame(gameId, player);
 	}
 
 	/**
 	 * Tworzy now¹ grê i dodaje gracza
 	 */
-	private void createGame() {
+	public void createGame() {
 		int id = Server.CreateGame();
 		Server.AddPlayerToTheGame(id, player);
 	}
@@ -85,7 +85,7 @@ public class LobbyCallsThread implements Runnable{
 	/**
 	 * Wysy³a do klienta listê aktualnie dostepnych gier
 	 */
-	private void getListOfGames() {
+	public void getListOfGames() {
 		ListOfGamesModel model = new ListOfGamesModel("listOfGames", Server.GetListOfGames());
 		try {
 			output.reset();

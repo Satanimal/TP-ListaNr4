@@ -115,4 +115,8 @@ public class LobbyFrame extends JFrame{
 			}
 		}
 	}
+	
+	public JPanel getGameListArea(){
+		return GameListArea;
+	}
 }
