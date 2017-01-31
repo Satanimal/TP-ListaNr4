@@ -12,17 +12,29 @@ import Graphics.MainFrame;
 import Logic.Game;
 import Models.JoinGameModel;
 
+/**
+ * ActionListener odpowiedzialny za do³¹czenie do gry
+ */
 public class JoinGameListener implements ActionListener{
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
 	private Game game;
 	private LobbyFrame frame;
+	
+	/**
+	 * Konstruktor
+	 * @param input
+	 * @param output
+	 * @param game
+	 * @param frame
+	 */
 	public JoinGameListener(ObjectInputStream input, ObjectOutputStream output, Game game, LobbyFrame frame){
 		this.input = input;
 		this.output = output;
 		this.game = game;
 		this.frame = frame;
 	}
+	
 	public void actionPerformed(ActionEvent e) {
 		try {
 			output.reset();

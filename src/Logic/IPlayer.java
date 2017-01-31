@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import Models.PlayerSide;
 import Models.Stone;
 
+/**
+ * Interfejs implementowany przez AIPlayer, oraz Player
+ */
 public interface IPlayer {
 	public void MakeMove(ArrayList<Stone> board) throws ClassNotFoundException, IOException, SocketException;
 	public void WaitForAction(ArrayList<Stone> board) throws IOException, ClassNotFoundException, SocketException;

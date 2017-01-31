@@ -6,6 +6,10 @@ import Logic.Game;
 import Logic.IPlayer;
 import Models.PlayerSide;
 
+/**
+ * W¹tek odpowiedzialny za rozgrywkê.
+ * Zawiera nieskoñczon¹ pêtlê, w której gracze na przemian podejmuj¹ akcje
+ */
 public class GameLoopThread implements Runnable{
 	private Game game;
 	private IPlayer currentPlayer;
@@ -36,6 +40,9 @@ public class GameLoopThread implements Runnable{
 		}
 	}
 	
+	/**
+	 * Ustala gracza aktualnie wykonuj¹cego ruch
+	 */
 	private void swapPlayers(){
 		IPlayer temp = currentPlayer;
 		currentPlayer = oppositePlayer;

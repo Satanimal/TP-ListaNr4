@@ -7,6 +7,9 @@ import Models.Stone;
 import Server.GameLoopThread;
 import Server.Server;
 
+/**
+ * Klasa zawieraj¹ca wszystkie informacje na temat tocz¹cej siê, lub utworzonej gry po stronie serwera
+ */
 public class Game implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -15,6 +18,9 @@ public class Game implements Serializable{
 	private ArrayList<IPlayer> players;
 	private ArrayList<Stone> board;
 	
+	/**
+	 * Kontruktor
+	 */
 	public Game(){
 		id = generalId;
 		generalId++;
@@ -22,6 +28,9 @@ public class Game implements Serializable{
 		players = new ArrayList<IPlayer>();
 	}
 	
+	/**
+	 * Rozpoczyna rozgrywkê po do³¹czeniu dwóch graczy
+	 */
 	public void StartGame(){
 		Server.SetPlayerSides(id);
 		new Thread(new GameLoopThread(this)).start();
@@ -30,7 +39,6 @@ public class Game implements Serializable{
 	static{
 		generalId = 0;
 	}
-	
 	
 	
 	

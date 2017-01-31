@@ -7,6 +7,10 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
+/**
+ * W¹tek odpalony przy starcie serwera.
+ * Nas³uchuje przychodz¹cych po³¹czeñ od klientów.
+ */
 public class ConnectionLoopThread implements Runnable{
 	public ConnectionLoopThread(){
 		
@@ -47,6 +51,11 @@ public class ConnectionLoopThread implements Runnable{
 		}
 	}
 
+	/**
+	 * Sprawdza, czy imiê gracza jest ju¿ na liœcie u¿ywanych nicków
+	 * @param name Nazwa gracza
+	 * @return
+	 */
 	private boolean isAlreadyInUse(String name) {
 		return Server.GetListOfPlayersNames().contains(name);
 	}

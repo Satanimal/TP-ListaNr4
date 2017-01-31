@@ -35,6 +35,12 @@ public class LobbyFrame extends JFrame{
 	private JScrollPane scrollPane;
 	private ListOfGamesModel listOfGames;
 	private JButton joinGame;
+	
+	/**
+	 * G³ówny Frame reprezentuj¹cy Lobby
+	 * @param inputStream Strumieñ wejœcia do komuniakcji z serwerem
+	 * @param outputStream Strumieñ wyjœcia do komunikacji z serwerem
+	 */
 	public LobbyFrame(ObjectInputStream inputStream, ObjectOutputStream outputStream){
 		super();
 		this.inputStream = inputStream;
@@ -86,9 +92,12 @@ public class LobbyFrame extends JFrame{
 		setResizable(false);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 	}
 	
+	/**
+	 * Dodaje listê gier z serwera do GameListArea
+	 * @param list Lista gier do wyœwietlenia
+	 */
 	public void addGamesToTheList(ArrayList<Game> list){
 		for(Game game : list){
 			if(game.getPlayers().size()!= 2){

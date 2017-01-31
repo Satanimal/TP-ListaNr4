@@ -10,7 +10,9 @@ import Logic.Game;
 import Logic.IPlayer;
 import Models.PlayerSide;
 
-
+/**
+ * G³ówny program serwera
+ */
 public class Server{
 	private static ArrayList<Socket> connections = new ArrayList<Socket>();
 	private static ArrayList<Game> listOfGames = new ArrayList<Game>();
@@ -25,7 +27,11 @@ public class Server{
         new Thread(new ConnectionLoopThread()).start();
     }
     
-    
+    /**
+     * Dodaje gracza do gry o podanym ID
+     * @param gameId ID gry docelowej
+     * @param player Nazwa do³¹czaj¹cego gracza
+     */
     public static void AddPlayerToTheGame(int gameId, IPlayer player){
     	
     	Game game = listOfGames.get(gameId);
@@ -35,14 +41,20 @@ public class Server{
     		game.StartGame();
     }
     
-    
+    /**
+     * Tworzy now¹ grê
+     * @return Zwraca ID utworzonej gry
+     */
     public static int CreateGame(){
     	Game game = new Game();
     	listOfGames.add(game);
     	return game.getId();
     }
     
-    
+    /**
+     * Dla wskazanej przez ID gry, ustawia z losowym prawdopodobieñstwem strony graczy
+     * @param gameId Id gry
+     */
     public static void SetPlayerSides(int gameId){	
     	Game game = listOfGames.get(gameId);
     	if(game.getPlayers().size() != 2) return;

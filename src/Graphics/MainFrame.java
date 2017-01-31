@@ -24,6 +24,11 @@ public class MainFrame extends JFrame{
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
 	
+	/**
+	 * G³ówny Frame reprezentuj¹cy okno gry
+	 * @param input Strumieñ wejœcia do komuniakcji z serwerem
+	 * @param output Strumieñ wyjœcia do komunikacji z serwerem
+	 */
 	public MainFrame(ObjectInputStream input, ObjectOutputStream output){
 		super();
 		this.input = input;

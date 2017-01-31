@@ -13,6 +13,9 @@ import Models.PlayerSide;
 import Models.PlayerTurnModel;
 import Models.Stone;
 
+/**
+ * Klasa reprezentuj¹ca gracza
+ */
 public class Player implements IPlayer, Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -21,12 +24,22 @@ public class Player implements IPlayer, Serializable{
 	private transient ObjectInputStream objectInputStream;
 	private transient ObjectOutputStream objectOutputStream;
 	
+	/**
+	 * Kontruktor
+	 * @param playerName Nazwa gracza
+	 * @param objectInputStream Strumieñ wejœcia do komuniakcji z serwerem
+	 * @param objectOutputStream Strumieñ wyjœcia do komunikacji z serwerem
+	 */
 	public Player(String playerName, ObjectInputStream objectInputStream, ObjectOutputStream objectOutputStream){
 		this.playerName = playerName;
 		this.objectInputStream = objectInputStream;
 		this.objectOutputStream = objectOutputStream; 
 	}
 	
+	/**
+	 * Do klienta tego gracza wysy³any jest komuniakt "yourTurn". W pêtli nastêpuje oczekiwanie na ruch gracza.
+	 * Nastêpnie po sprawdzeniu ruchu, wysy³any jest komunikat zwrotny informuj¹cy o poprawnoœci ruchu.
+	 */
 	public void MakeMove(ArrayList<Stone> board) throws IOException, ClassNotFoundException, SocketException{
 		objectOutputStream.reset();
 		objectOutputStream.writeObject(new PlayerTurnModel("yourTurn", board));
@@ -49,6 +62,9 @@ public class Player implements IPlayer, Serializable{
 		}
 	}
 
+	/**
+	 * Do klienta tego gracza wysy³any jest komuniakt "opponentTurn"
+	 */
 	public void WaitForAction(ArrayList<Stone> board) throws IOException, ClassNotFoundException, SocketException {
 		objectOutputStream.reset();
 		objectOutputStream.writeObject(new PlayerTurnModel("opponentTurn", board));

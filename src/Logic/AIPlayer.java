@@ -10,15 +10,25 @@ import Handlers.MoveValidationHandler;
 import Models.PlayerSide;
 import Models.Stone;
 
+/**
+ * Klasa reprezentuj¹ca bota
+ */
 public class AIPlayer implements IPlayer, Serializable{
 	private static final long serialVersionUID = 1L;
 	private PlayerSide playerSide;
 	private String playerName;
 	
+	/**
+	 * Kontruktor
+	 * @param playerName Nazwa bota
+	 */
 	public AIPlayer(String playerName){
 		this.playerName = playerName;
 	}
 	
+	/**
+	 * Bot wykonuje ruch losuj¹c punkt na planszy, dopóki nie trafi na dostêpny i prawid³owy
+	 */
 	public void MakeMove(ArrayList<Stone> board) throws ClassNotFoundException, IOException {
 		Stone move = null;
 		Random rand = new Random();

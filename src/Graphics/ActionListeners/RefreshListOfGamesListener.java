@@ -10,10 +10,20 @@ import Graphics.LobbyFrame;
 import Models.BaseSocketModel;
 import Models.ListOfGamesModel;
 
+/**
+ * ActionListener odpowiedzialny za odœwie¿enie listy gier
+ */
 public class RefreshListOfGamesListener implements ActionListener{
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
 	private LobbyFrame frame;
+	
+	/**
+	 * Konstruktor
+	 * @param input
+	 * @param output
+	 * @param frame
+	 */
 	public RefreshListOfGamesListener(ObjectInputStream input, ObjectOutputStream output, LobbyFrame frame){
 		this.input = input;
 		this.output = output;

@@ -17,19 +17,21 @@ import Graphics.ActionListeners.BoardActionListener;
 import Models.PlayerSide;
 import Models.Stone;
 
+/**
+ * Panel reprezentuj¹cy planszê
+ */
 public class Board extends JPanel{
 	private static final long serialVersionUID = 1L;
-	private int height;
-	public  int width;
+	public int width;
 	public ArrayList<Stone> points;
 	public volatile Stone playerMove;
 	public volatile boolean moveValue;
 	public JTextArea text;
 	public int mnoznik = width/21;
 	private BoardActionListener listener;
+	
 	public Board(int width, int height, ObjectOutputStream output, ObjectInputStream input, JTextArea text){
 		super();
-		this.height = height;
 		this.width = width;
 		this.text = text;
 		setSize(width , height );
@@ -41,46 +43,46 @@ public class Board extends JPanel{
 		new Thread(new MoveActionThread(this, input, output)).start();
 	}
 
-		public void setListOfPoints(ArrayList<Stone> points){
-			this.points = points;
-		}
+	public void setListOfPoints(ArrayList<Stone> points){
+		this.points = points;
+	}
 		
-	    private void doDrawing(Graphics g) {
+    private void doDrawing(Graphics g) {
 
-	        Graphics2D g2d = (Graphics2D) g;
-	        g2d.setColor(Color.BLACK);
-	        //rysowaqnie planszy
-	        int mnoznik = width/21;
-	        int sizeOfPoint = mnoznik/2;
-	          	for(int i=0 ;i<19 ;i++){
-	        		//linie pionowe
-	        		g2d.drawLine(mnoznik + mnoznik * i, mnoznik, mnoznik + mnoznik * i, width - mnoznik);
-	        		//linie poziome
-	        		g2d.drawLine(mnoznik ,mnoznik + i * mnoznik, width - mnoznik ,mnoznik + mnoznik *i);
-	        	}
-	        	g2d.drawLine(mnoznik, width - mnoznik, width - mnoznik, width - mnoznik);
-	        	g2d.drawLine(width - mnoznik, mnoznik, width - mnoznik, width - mnoznik);
-	        if(points != null){
-	        	for(Stone f : points){
-	        		if(f == null)
-	        		{}
-	        		else{
-	        			if(f.color.equals(PlayerSide.Black)){
-	        				g2d.setColor(Color.BLACK);
-	        				g2d.fillOval((int)f.coordinates.getX() * mnoznik - sizeOfPoint/2, (int) f.coordinates.getY() * mnoznik - sizeOfPoint/2, sizeOfPoint, sizeOfPoint);
-	        			}else{
-	        				g2d.setColor(Color.WHITE);
-	        				g2d.fillOval((int)f.coordinates.getX() * mnoznik - sizeOfPoint/2, (int) f.coordinates.getY() * mnoznik - sizeOfPoint/2, sizeOfPoint, sizeOfPoint);
-	        			}
-	        		}
-	        	}
-	        }
-	    }
-	    	
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(Color.BLACK);
+        //rysowaqnie planszy
+        int mnoznik = width/21;
+        int sizeOfPoint = mnoznik/2;
+          	for(int i=0 ;i<19 ;i++){
+        		//linie pionowe
+        		g2d.drawLine(mnoznik + mnoznik * i, mnoznik, mnoznik + mnoznik * i, width - mnoznik);
+        		//linie poziome
+        		g2d.drawLine(mnoznik ,mnoznik + i * mnoznik, width - mnoznik ,mnoznik + mnoznik *i);
+        	}
+        	g2d.drawLine(mnoznik, width - mnoznik, width - mnoznik, width - mnoznik);
+        	g2d.drawLine(width - mnoznik, mnoznik, width - mnoznik, width - mnoznik);
+        if(points != null){
+        	for(Stone f : points){
+        		if(f == null)
+        		{}
+        		else{
+        			if(f.color.equals(PlayerSide.Black)){
+        				g2d.setColor(Color.BLACK);
+        				g2d.fillOval((int)f.coordinates.getX() * mnoznik - sizeOfPoint/2, (int) f.coordinates.getY() * mnoznik - sizeOfPoint/2, sizeOfPoint, sizeOfPoint);
+        			}else{
+        				g2d.setColor(Color.WHITE);
+        				g2d.fillOval((int)f.coordinates.getX() * mnoznik - sizeOfPoint/2, (int) f.coordinates.getY() * mnoznik - sizeOfPoint/2, sizeOfPoint, sizeOfPoint);
+        			}
+        		}
+        	}
+        }
+    }
+    	
 
-	    @Override
-	    public void paintComponent(Graphics g) {
-	        super.paintComponent(g);
-	        doDrawing(g);
-	    }
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        doDrawing(g);
+    }
 }
