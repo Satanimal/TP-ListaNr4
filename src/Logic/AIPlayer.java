@@ -2,6 +2,7 @@ package Logic;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -9,7 +10,8 @@ import Handlers.MoveValidationHandler;
 import Models.PlayerSide;
 import Models.Stone;
 
-public class AIPlayer implements IPlayer{
+public class AIPlayer implements IPlayer, Serializable{
+	private static final long serialVersionUID = 1L;
 	private PlayerSide playerSide;
 	private String playerName;
 	
